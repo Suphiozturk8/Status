@@ -65,7 +65,7 @@ def get_readable_bytes(size: str) -> str:
 )
 async def stats(_, message: Message):
     await message.reply(
-        "Please wait..."
+        "Please wait...",
         quote=True
     )
     image = Image.open('./statsbg.jpg').convert('RGB')
@@ -73,11 +73,11 @@ async def stats(_, message: Message):
     draw = ImageDraw.Draw(image)
 
     def draw_progressbar(coordinate, progress):
-    	progress = 110+(progress*10.8)
-    	draw.ellipse((105, coordinate-25, 127 , coordinate), fill='#FFFFFF')
-    	draw.rectangle((120, coordinate, progress, coordinate-25), fill='#FFFFFF')	
-    	draw.ellipse((progress-7, coordinate-25, progress+15, coordinate), fill='#FFFFFF')
-
+        progress = 110+(progress*10.8)
+        draw.ellipse((105, coordinate-25, 127 , coordinate), fill='#FFFFFF')
+        draw.rectangle((120, coordinate-25, progress, coordinate), fill='#FFFFFF')
+        draw.ellipse((progress-7, coordinate-25, progress+15, coordinate), fill='#FFFFFF')
+        
     total, used, free = shutil.disk_usage(".")
     process = psutil.Process(os.getpid())
 
